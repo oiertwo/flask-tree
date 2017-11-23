@@ -11,7 +11,9 @@ AVAILABLE_COMMANDS = {
     'onebyone': 'onebyone',
 }
 
-global thread = None
+global thread
+
+thread = None
 
 def serve_static(filename):
     url = os.path.dirname(str(request.url_rule))[1:]
