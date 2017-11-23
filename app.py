@@ -11,6 +11,8 @@ AVAILABLE_COMMANDS = {
     'onebyone': 'onebyone',
 }
 
+thread = None
+
 def serve_static(filename):
     url = os.path.dirname(str(request.url_rule))[1:]
     #root_dir = os.path.dirname(os.getcwd())
@@ -25,10 +27,14 @@ def index():
 def command(cmd=None):
     if cmd == 'random':
         st = "random"
-        tree.random()
+        thread.stop(10)
+        thread = tree.Random()
+        thread.start()
     else:
         st = "one by one"
-        tree.onebyone()
+        thread.stop(10)
+        thread = tree.Onebyone()
+        thread.start()
     # ser.write(camera_command)
     return render_template('index.html', commands = AVAILABLE_COMMANDS, status = st)
 
