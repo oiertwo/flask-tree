@@ -3,6 +3,7 @@ from gpiozero.tools import random_values
 from signal import pause
 from time import sleep
 import threading
+from random import randint
 
 class Random(threading.Thread):
 
@@ -15,12 +16,11 @@ class Random(threading.Thread):
     def run(self):
         while not self._stop_event.is_set():
             if self.mode == "random":
-
                 for led in self.tree:
                     if not (self.mode == "random"):
                         break
-                    led.source_delay = 0.1
-                    led.source = random_values()
+                    #led.source_delay = 0.1
+                    led.value = randint(0, 1)
             else:
                 for led in self.tree:
                     if self.mode == "random":
