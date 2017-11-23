@@ -1,0 +1,10 @@
+{# in main.html #}
+{% for label, command in commands.items() %}
+
+    <a class="command command-{{ command }}" role="button" href="/{{command}}">
+        {{ label }}
+    </a>
+{% endfor %}
+
+status : {{ status }}
+{# and then elsewhere #}
