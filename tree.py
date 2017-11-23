@@ -11,7 +11,7 @@ class Random(threading.Thread):
         self._stop_event = threading.Event()
 
 
-    def run():
+    def run(self):
         while not self._stop_event.is_set():
             tree = LEDBoard(*range(2,28),pwm=True)
             for led in tree:
@@ -32,7 +32,7 @@ class Onebyone(threading.Thread):
         self._stop_event.set()
         self.join(timeout)
 
-    def run():
+    def run(self):
         tree = LEDBoard(*range(2,28),pwm=True)
 
         while not self._stop_event.is_set():
