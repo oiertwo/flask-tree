@@ -9,14 +9,23 @@ class Random(threading.Thread):
     def __init__(self):
         super(Random, self).__init__()
         self._stop_event = threading.Event()
-
+        self.mode = "random"
 
     def run(self):
         while not self._stop_event.is_set():
-            tree = LEDBoard(*range(2,28),pwm=True)
-            for led in tree:
-                led.source_delay = 0.1
-                led.source = random_values()
+            if mode == "random":
+                tree = LEDBoard(*range(2,28),pwm=True)
+                for led in tree:
+                    led.source_delay = 0.1
+                    led.source = random_values()
+            else:
+                for led in tree:
+                    if mode == "random":
+                        break
+                    led.on()
+                    sleep(0.1)
+                    led.off()
+                    sleep(0.1)
 
     def stop(self, timeout):
         self._stop_event.set()

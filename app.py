@@ -20,6 +20,7 @@ def serve_static(filename):
 
 def get_thread(cmd):
     thread = getattr(g, '_thread', None)
+'''
     if thread:
         g._thread.stop(10)
 
@@ -27,8 +28,10 @@ def get_thread(cmd):
         g._thread = tree.Random()
     else:
         g._thread = tree.Onebyone()
-
-    g._thread.start()
+'''
+    if thread == None:
+        g._thread = tree.random()
+        g._thread.start()
     return g._thread
 
 @app.route('/')
@@ -37,7 +40,11 @@ def index():
 
 @app.route('/<cmd>')
 def command(cmd=None):
-    get_thread(cmd)
+    t = get_thread(cmd)
+    if cmd == "random":
+        t.mode = "random"
+    else:
+        t.mode = "onebyone"
     # ser.write(camera_command)
     return render_template('index.html', commands = AVAILABLE_COMMANDS, status = cmd)
 
