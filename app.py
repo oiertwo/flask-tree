@@ -30,7 +30,7 @@ def get_thread(cmd):
         g._thread = tree.Onebyone()
     '''
     if thread == None:
-        g._thread = tree.random()
+        g._thread = tree.Random()
         g._thread.start()
     return g._thread
 
