@@ -25,16 +25,16 @@ def index():
 
 @app.route('/<cmd>')
 def command(cmd=None):
+    if thread:
+        thread.stop(10)
     if cmd == 'random':
         st = "random"
-        thread.stop(10)
         thread = tree.Random()
-        thread.start()
     else:
         st = "one by one"
-        thread.stop(10)
         thread = tree.Onebyone()
-        thread.start()
+
+    thread.start()
     # ser.write(camera_command)
     return render_template('index.html', commands = AVAILABLE_COMMANDS, status = st)
 
