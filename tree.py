@@ -13,14 +13,14 @@ class Random(threading.Thread):
 
     def run(self):
         while not self._stop_event.is_set():
-            if mode == "random":
+            if self.mode == "random":
                 tree = LEDBoard(*range(2,28),pwm=True)
                 for led in tree:
                     led.source_delay = 0.1
                     led.source = random_values()
             else:
                 for led in tree:
-                    if mode == "random":
+                    if self.mode == "random":
                         break
                     led.on()
                     sleep(0.1)
