@@ -20,7 +20,7 @@ def serve_static(filename):
 
 def get_thread(cmd):
     thread = getattr(g, '_thread', None)
-'''
+    '''
     if thread:
         g._thread.stop(10)
 
@@ -28,7 +28,7 @@ def get_thread(cmd):
         g._thread = tree.Random()
     else:
         g._thread = tree.Onebyone()
-'''
+    '''
     if thread == None:
         g._thread = tree.random()
         g._thread.start()
