@@ -32,10 +32,7 @@ def get_thread(cmd):
     if thread == None:
         g._thread = tree.Random()
         g._thread.start()
-    else:
-        g._thread.stop()
-        g._thread = tree.Random()
-        g._thread.start()
+
     return g._thread
 
 @app.route('/')
