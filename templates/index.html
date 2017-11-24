@@ -1,10 +1,25 @@
 {# in main.html #}
+
+<link rel="stylesheet" href="../css/styles.css">
 {% for label, command in commands.items() %}
 
-    <a class="command command-{{ command }}" role="button" href="/{{command}}">
-        {{ label }}
-    </a>
+<div class="back">
+    <div class="button_base b10_tveffect" href="/{{ command }}">
+        <div> {{ label }}</div>
+        <div>
+            <div> {{ label }}</div>
+            <div> {{ label }}</div>
+            <div> {{ label }}</div>
+        </div>
+    </div>
+</div>
 {% endfor %}
 
-status : {{ status }}
+<div class="back">
+    <div class="button_base b05_3d_roll" href="/{{command}}">
+        <div>STATUS</div>
+        <div>{{ status }}</div>
+    </div>
+</div>
+
 {# and then elsewhere #}
