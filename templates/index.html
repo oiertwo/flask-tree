@@ -1,6 +1,6 @@
 {# in main.html #}
 
-<link rel="stylesheet" href="/static/buttons.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='buttons.js') }}">
 {% for label, command in commands.items() %}
 
 <div class="back">
