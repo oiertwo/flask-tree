@@ -15,20 +15,16 @@ class Random(threading.Thread):
 
     def run(self):
         while not self._stop_event.is_set():
-            if self.mode == "random":
-                for led in self.tree:
-                    if not (self.mode == "random"):
-                        break
-                    #led.source_delay = 0.1
+            for led in self.tree:
+                if self.mode == "random":
                     led.value = randint(0, 1)
-            else:
-                for led in self.tree:
-                    if self.mode == "random":
-                        break
+                elif self.mode == "onebyone":
                     led.on()
                     sleep(0.1)
                     led.off()
                     sleep(0.1)
+                else:
+                    led.off()
 
     def stop(self, timeout):
         self._stop_event.set()
