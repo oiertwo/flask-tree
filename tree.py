@@ -12,17 +12,37 @@ class Random(threading.Thread):
         self._stop_event = threading.Event()
         self.mode = "random"
         self.tree = LEDBoard(*range(2,28),pwm=True)
-        self.led = LED(2)
+
+    def _random():
+        self.tree = LEDBoard(*range(2,28),pwm=True)
+        for led in self.tree:
+            led.value = randint(0, 1)
+            sleep(0.01)
+    def _onebyone():
+        self.tree = LEDBoard(*range(2,28),pwm=True)
+        for led in self.tree:
+            led.on()
+            sleep(0.1)
+            led.off()
+            sleep(0.1)
+
+    del _alloff():
+        self.tree = LEDBoard(*range(2,28),pwm=True)
+        for led in self.tree:
+            led.off()
+
     def run(self):
         while not self._stop_event.is_set():
-            for led in self.tree:
-                if self.mode == "random":
-                    led.source = randint(0, 1)
-                elif self.mode == "onebyone":
-                    led.source_delay = 0.1
-                    led.source = [1,0]
-                else:
-                    led.source = 0
+            if self.mode == "random":
+                self.tree.close()
+                self._random()
+            elif self.mode == "onebyone":
+                self.tree.close()
+                self._onebyone()
+            else:
+                self.tree.close()
+                self._alloff()
+
 
     def stop(self, timeout):
         self._stop_event.set()
