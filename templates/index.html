@@ -5,20 +5,22 @@
 
 <div class="back">
     <div class="button_base b10_tveffect" href="/{{ command }}">
+        <a href="/{{ command }}">
         <div> {{ label }}</div>
         <div>
             <div> {{ label }}</div>
             <div> {{ label }}</div>
             <div> {{ label }}</div>
         </div>
+      </a>
     </div>
 </div>
 {% endfor %}
 
-<div class="back">
+<div class="status">
     <div class="button_base b05_3d_roll" href="/{{command}}">
-        <div>STATUS</div>
         <div>{{ status }}</div>
+        <div>STATUS</div>
     </div>
 </div>
 

@@ -33,7 +33,7 @@ body {
 }
 
 .back:before {
-    content: counter(bc) "_";
+    # content: counter(bc) "_";
     position: absolute;
     padding: 10px;
 }
