@@ -1,4 +1,4 @@
-from gpiozero import LEDBoard
+from gpiozero import LEDBoard, LED
 from gpiozero.tools import random_values
 from signal import pause
 from time import sleep
@@ -12,19 +12,17 @@ class Random(threading.Thread):
         self._stop_event = threading.Event()
         self.mode = "random"
         self.tree = LEDBoard(*range(2,28),pwm=True)
-
+        self.led = LED(2)
     def run(self):
         while not self._stop_event.is_set():
             for led in self.tree:
                 if self.mode == "random":
-                    led.value = randint(0, 1)
+                    led.source = randint(0, 1)
                 elif self.mode == "onebyone":
-                    led.on()
-                    sleep(0.1)
-                    led.off()
-                    sleep(0.1)
+                    led.source_delay = 0.1
+                    led.source = [1,0]
                 else:
-                    led.off()
+                    led.source = 0
 
     def stop(self, timeout):
         self._stop_event.set()
