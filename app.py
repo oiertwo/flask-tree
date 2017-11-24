@@ -10,6 +10,7 @@ app.config['DEBUG'] = True
 AVAILABLE_COMMANDS = {
     'random': 'random',
     'onebyone': 'onebyone',
+    'off': 'off',
 }
 
 def serve_static(filename):
@@ -20,15 +21,6 @@ def serve_static(filename):
 
 def get_thread(cmd):
     thread = getattr(g, '_thread', None)
-    '''
-    if thread:
-        g._thread.stop(10)
-
-    if cmd == "random":
-        g._thread = tree.Random()
-    else:
-        g._thread = tree.Onebyone()
-    '''
     if thread == None:
         g._thread = tree.Random()
         g._thread.start()
@@ -44,8 +36,10 @@ def command(cmd=None):
     t = get_thread(cmd)
     if cmd == "random":
         t.mode = "random"
-    else:
+    elif cmd == 'onebyone':
         t.mode = "onebyone"
+    else:
+        t_mode = "off"
     # ser.write(camera_command)
     return render_template('index.html', commands = AVAILABLE_COMMANDS, status = cmd)
 
