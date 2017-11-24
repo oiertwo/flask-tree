@@ -13,12 +13,12 @@ class Random(threading.Thread):
         self.mode = "random"
         self.tree = LEDBoard(*range(2,28),pwm=True)
 
-    def _random():
+    def _random(self):
         self.tree = LEDBoard(*range(2,28),pwm=True)
         for led in self.tree:
             led.value = randint(0, 1)
             sleep(0.01)
-    def _onebyone():
+    def _onebyone(self):
         self.tree = LEDBoard(*range(2,28),pwm=True)
         for led in self.tree:
             led.on()
@@ -26,7 +26,7 @@ class Random(threading.Thread):
             led.off()
             sleep(0.1)
 
-    del _alloff():
+    def _alloff(self):
         self.tree = LEDBoard(*range(2,28),pwm=True)
         for led in self.tree:
             led.off()
